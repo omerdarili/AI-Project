@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duygu Analizi Uygulaması</title>
+    <style>
+        body { font-family: sans-serif; background-color: #1f1f27; color: #a11a1a98; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #fde5e5; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 500px; width: 90%; }
+        h1 { color: #4a4a4a; }
+        textarea { width: 100%; min-height: 100px; padding: 0.5rem; border-radius: 4px; border: 1px solid #360909; margin-top: 1rem; font-size: 1rem; }
+        button { background-color: #232431; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: background-color 0.3s; }
+        button:hover { background-color: #4a54e1; }
+        .result { margin-top: 1.5rem; padding: 1rem; border-radius: 4px; font-size: 1.2rem; font-weight: bold; }
+        .positive { background-color: #e0f8e0; color: #2d6b2d; }
+        .negative { background-color: #f8e0e0; color: #9c2b2b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Metin Duygu Analizi</h1>
+        <p>Analiz etmek istediğiniz <strong>Türkçe</strong> metni aşağıya yazın.</p>
+        <form action="/analyze" method="post">
+            <textarea name="text_to_analyze" placeholder="Örnek: Bu filmi kesinlikle tavsiye ederim..."></textarea>
+            <!-- ********************************************************** -->
+            <br>
+            <button type="submit">Analiz Et</button>
+        </form>
+    </div>
+</body>
+</html>

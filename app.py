@@ -1,26 +1,32 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
+from sentiment_analyzer import analyze_sentiment
 
 app = Flask(__name__)
 
+# ana sayfa ('/') isteği geldiğinde, index.html dosyasını render edip kullanıcıya gösteriyoruz
 @app.route('/')
-def ana_sayfa():
+def home():
+    return render_template('index.html')
 
-    return "Merhaba, Flask Dünyası!"
+# html formundan '/analyze' adresine bir POST isteği geldiğinde bu fonksiyon çalışacak
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    
+    #formdaki 'text_to_analyze' isimli textarea'dan gelen metni alıyoruz
+    text = request.form['text_to_analyze']
 
-@app.route('/islem')
-def islem_yap():
+    #eğer metin boşsa, kullanıcıyı uyaran bir mesaj gönderiyoruz
+    if not text:
+        return render_template('result.html', text="Boş metin gönderdiniz.", label="HATA", score=0)
+    
+    #gelen metni duygu analizi fonksiyonumuza gönderiyoruz
+    result = analyze_sentiment(text)
 
-    gelen_metin = request.args.get('metin', 'Herhangi bir metin girilmedi')
-
-    sonuc = gelen_metin.upper()
-
-    return f"""
-       <h1>İslem Sayfasi</h1>
-       <p> URL'den gelen orijinal metin: <strong>{gelen_metin}</strong></p>
-       <p>İslem sonucu (Büyük Harf): <strong>{sonuc}</strong></p>
-       <hr>
-       <p><em>URL'nin sonuna "?metin=istediğin_bir_sey" ekleyerek deneme yapilabilir.</em></p>
-    """   
+    #sonucu göstermek için 'result.html' sablonunu kullanıyoruz.
+    #bu sablona analiz edilen metni ve sonucu parametre olarak gönderiyouz.
+    return render_template('result.html', text=text, label=result['label'], score=result['score'])
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+

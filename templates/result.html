@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiz Sonucu</title>
+    <style>
+        body { font-family: sans-serif; background-color: #1f1f27; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 500px; width: 90%; }
+        h1 { color: #4a4a4a; }
+        .result-box { margin-top: 1.5rem; padding: 1rem; border-radius: 4px; font-size: 1.2rem; font-weight: bold; text-transform: capitalize; }
+        .positive { background-color: #e0f8e0; color: #2d6b2d; }
+        .negative { background-color: #f8e0e0; color: #9c2b2b; }
+        .neutral { background-color: #f0f0f0; color: #555; }
+        .HATA { background-color: #fff0c4; color: #8a6d3b; }
+        a { display: inline-block; margin-top: 2rem; text-decoration: none; background-color: #232431; color: white; padding: 0.5rem 1rem; border-radius: 4px; }
+        blockquote { background: #eee; border-left: 5px solid #ccc; padding: 10px; margin: 20px 0; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analiz Sonucu</h1>
+        <p>Analiz edilen metin:</p>
+        <blockquote>{{ text }}</blockquote>
+        
+        <div class="result-box {{ label|lower }}">
+            Sonuç: <strong>{{ label }}</strong>
+            <br>
+            {% if label != 'HATA' %}
+            Skor: {{ "%.4f"|format(score) }}
+            {% endif %}
+        </div>
+        
+        <a href="/">Yeni Analiz Yap</a>
+    </div>
+</body>
+</html>
