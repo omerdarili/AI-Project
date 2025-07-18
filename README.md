@@ -37,8 +37,8 @@ Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımlar�
 
 1.  **Projeyi Klonlayın:**
     ```bash
-    git clone [https://github.com/omerdarili/AI-Project.git](https://github.com/omerdarili/AI-Project.git)
-    cd AI-Projem
+    git clone https://github.com/omerdarili/AI-Project.git
+    cd AI-Project
     ```
 
 2.  **Sanal Ortamı Oluşturun ve Aktive Edin:**
